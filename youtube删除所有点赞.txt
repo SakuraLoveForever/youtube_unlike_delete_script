@@ -1,0 +1,61 @@
+1. 打开点赞页面
+https://www.youtube.com/playlist?list=LL
+
+2. F12打开控制台，输入一下代码，enter运行即可
+
+let delay = 1500;
+
+function getMenus() {
+    // 直接找所有视频卡片里的菜单按钮（最通用）
+    return Array.from(document.querySelectorAll('ytd-playlist-video-renderer yt-icon-button'));
+}
+
+function clickRemove() {
+    let menus = getMenus();
+
+    if (menus.length === 0) {
+        console.log("没加载到视频，开始滚动...");
+        window.scrollBy(0, window.innerHeight);
+        setTimeout(clickRemove, 2000);
+        return;
+    }
+
+    let i = 0;
+
+    function next() {
+        if (i >= menus.length) {
+            console.log("这一批完成，继续滚动...");
+            window.scrollBy(0, window.innerHeight);
+            setTimeout(clickRemove, 2000);
+            return;
+        }
+
+        let btn = menus[i];
+        btn.click();
+
+        setTimeout(() => {
+            let items = Array.from(document.querySelectorAll('ytd-menu-service-item-renderer'));
+
+            // 不管语言，直接找“移除”类操作（最后一个一般就是）
+            let removeBtn = items.find(el =>
+                el.innerText.includes("移除") ||
+                el.innerText.includes("Remove") ||
+                el.innerText.includes("削除")
+            );
+
+            if (removeBtn) {
+                removeBtn.click();
+                console.log(`已处理 ${i + 1}`);
+            } else {
+                console.log("没找到移除按钮");
+            }
+
+            i++;
+            setTimeout(next, delay);
+        }, 700);
+    }
+
+    next();
+}
+
+clickRemove();
