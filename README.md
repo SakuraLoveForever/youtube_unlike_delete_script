@@ -4,7 +4,9 @@
 
 [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-安装脚本-brightgreen)](https://greasyfork.org/zh-CN/scripts/574715-youtube-%E6%89%B9%E9%87%8F%E5%8F%96%E6%B6%88%E7%82%B9%E8%B5%9E%E5%8A%A9%E6%89%8B-%E7%B2%BE%E5%87%86%E7%89%88)
 
-![截图](screenshot.png)
+## 界面预览
+
+![YouTube 取消点赞脚本：慢速与快速清理控制台](docs/images/youtube-unlike-preview.png)
 
 ## 功能
 
